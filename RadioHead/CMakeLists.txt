@@ -1,5 +1,7 @@
 set(RADIOHEAD_SAMPLES_DIR ${CMAKE_BINARY_DIR}/RadioHead-Samples)
-execute_process(COMMAND git clone --recursive https://github.com/idreamsi/RadioHead ${RADIOHEAD_SAMPLES_DIR})
+if (NOT EXISTS ${RADIOHEAD_SAMPLES_DIR})
+  execute_process(COMMAND git clone --recursive https://github.com/idreamsi/RadioHead ${RADIOHEAD_SAMPLES_DIR})
+endif ()
 
 add_library(RadioHead STATIC
   ${RADIOHEAD_SAMPLES_DIR}/RHutil/RasPi.cpp
