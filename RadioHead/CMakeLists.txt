@@ -1,20 +1,19 @@
-set(RADIOHEAD_SAMPLES_DIR ${CMAKE_BINARY_DIR}/RadioHead-Samples)
-if (NOT EXISTS ${RADIOHEAD_SAMPLES_DIR})
-  execute_process(COMMAND git clone --recursive https://github.com/idreamsi/RadioHead ${RADIOHEAD_SAMPLES_DIR})
+if (NOT EXISTS ${RADIOHEAD_SAMPLES_SRC})
+  execute_process(COMMAND git clone --recursive https://github.com/idreamsi/RadioHead ${RADIOHEAD_SAMPLES_SRC})
 endif ()
 
 add_library(RadioHead STATIC
-  ${RADIOHEAD_SAMPLES_DIR}/RHutil/RasPi.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RH_RF95.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RHDatagram.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RHHardwareSPI.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RHSPIDriver.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RHGenericDriver.cpp
-  ${RADIOHEAD_SAMPLES_DIR}/RHGenericSPI.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHutil/RasPi.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RH_RF95.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHDatagram.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHHardwareSPI.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHSPIDriver.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHGenericDriver.cpp
+  ${RADIOHEAD_SAMPLES_SRC}/RHGenericSPI.cpp
 )
 
 target_include_directories(RadioHead PUBLIC
-  ${RADIOHEAD_SAMPLES_DIR}
+  ${RADIOHEAD_SAMPLES_SRC}
 )
 
 target_link_libraries(RadioHead PUBLIC
